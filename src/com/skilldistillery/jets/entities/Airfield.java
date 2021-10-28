@@ -91,8 +91,18 @@ public class Airfield {
 			System.out.println("Error!");
 			break;
 		}
-
 	}
+
+		//Your list<Jet> in your Airfield class is exposed through it's getter method. 
+		//Rather than calling the getter to have access to the List<Jet> in your Application class, 
+		//instead you should have invoked methods in the Airfield class that call upon it's own list.
+	//MAKE A DISPLAY method. dummy.
+	public void displayAirField() {
+		for (Jet jet : fleet) {
+			System.out.println(jet.toString());
+		}
+	}
+		
 
 	public ArrayList<Jet> getFleet() {
 		return fleet;

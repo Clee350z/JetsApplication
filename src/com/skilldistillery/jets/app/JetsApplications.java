@@ -50,14 +50,15 @@ public class JetsApplications {
 			int userChoice = scan.nextInt();
 			scan.nextLine();
 
+			//Rather than calling the getter to have access to the List<Jet>
+			//in your Application class
+			//instead you should have invoked methods in the 
+			//Airfield class that call upon it's own list
 			switch (userChoice) {
 			case 1:
 				if (airfield.getFleet() != null) {
-					for (Jet jet : airfield.getFleet()) {
-
-						System.out.println(jet);
+						airfield.displayAirField();
 					}
-				}
 				break;
 
 			case 2:
@@ -67,15 +68,16 @@ public class JetsApplications {
 					}
 				}
 				break;
-
+//Case 2 was printing out the fly method super weird. just used jet.fly()
+				
 			case 3:
 				Jet fastest = null;
 				for (Jet jet : airfield.getFleet()) {
 					if (fastest == null || jet.getSpeed() > fastest.getSpeed()) {
 						fastest = jet;
 					}
-					System.out.println(fastest);
 				}
+				System.out.println("The Fastest " + fastest);
 				break;
 
 			case 4:
@@ -84,29 +86,28 @@ public class JetsApplications {
 					if (furthest == null || jet.getSpeed() > furthest.getSpeed()) {
 						furthest = jet;
 					}
-					System.out.println(furthest);
 				}
+				System.out.println("The Jet with the Longest range:" + furthest);
 				break;
 
 			case 5:
 				for (Jet jet : airfield.getFleet()) {
-					if (jet instanceof CargoPlane) {
 						if (jet instanceof CargoPlane) {
 							((CargoPlane) jet).loadCargo();
+				
 						}
-					}
 				}
 				break;
 
 			case 6:
 				for (Jet jet : airfield.getFleet()) {
-					if (jet instanceof Combat) {
 						if (jet instanceof Combat) {
-							((Combat) jet).fight();
-						}
+							((Combat) jet).EngageCombat();
 					}
 				}
 				break;
+				
+				
 			case 7:
 				airfield.buildJet(scan);
 				break;
@@ -136,15 +137,16 @@ public class JetsApplications {
 		}
 
 	}
-
-	public void displayAirField(ArrayList<Jet> fleet) {
+//Rather than calling the getter to have access to the List<Jet>
+	//in your Application class
+	/* public void displayAirField(ArrayList<Jet> fleet) {
 		for (Jet jet : fleet) {
 			jet.toString();
 
 		}
 
 	}
-
+*/
 }
 
 //}

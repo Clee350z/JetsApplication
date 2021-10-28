@@ -1,12 +1,15 @@
 package com.skilldistillery.jets.entities;
 
 public abstract class Jet {
-	public String model;
-	public String type;
-	public double speed;
-	public int range;
-	public long cost;
-	double flightTime;
+	protected String model;
+	protected String type;
+	protected double speed;
+	protected int range;
+	protected long cost;
+	protected double flightTime;
+	//Your field data in your Jet class are exposed,
+	//remember to encapsulate your data.
+	//switch public variables to protected
 	
 	public Jet ( String model,String make, double speed, int range, long cost) {
 		this.model =model;
@@ -17,8 +20,18 @@ public abstract class Jet {
 		this.flightTime= (range/speed);
 	}
 
+	public abstract void fly() ;
+	//BE SURE TO ASK ANTHONY WHY THIS NEEDS TO BE ABSTRACT
+	
+	
 	public int getRange() {
 		return range;
+	}
+
+	@Override
+	public String toString() {
+		return "Jet [model=" + model + ", type=" + type + ", speed=" + speed + ", range=" + range + ", cost=" + cost
+				+ "]";
 	}
 
 	public void setRange(int range) {
@@ -62,16 +75,7 @@ public abstract class Jet {
 	//}
 	
 	
-	public void fly() {
-		System.out.println("The range of this jet is " + flightTime);
-		
-	}
 
-	@Override
-	public String toString() {
-		return "Jet [model=" + model + ", make=" + type + ", speed=" + speed + ", range=" + range + ", cost=" + cost
-				+ ", flightTime=" + flightTime + "]";
-	}
 	
 	
 }
